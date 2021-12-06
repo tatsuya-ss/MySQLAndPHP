@@ -10,13 +10,23 @@ $userName = $_ENV["USER_NAME"];
 $password = $_ENV["PASSWORD"];
 $database = "todo";
 $dsn = 'mysql:host='.$serverName.';dbname='.$database.';charset=utf8';
-echo $dsn;
+// echo $serverName;
 try { 
     $dbh = new PDO($dsn, $userName, $password);
     echo '接続できました';
+    echo '<br>';
 } catch (PDOException $e) {
       // エラーメッセージを表示させる
   echo 'データベースにアクセスできません！' . $e->getMessage();
+  echo '<br>';
   // 強制終了
   exit;
+}
+
+$sql = "SELECT * FROM users";
+$statement = $dbh->query($sql);
+
+foreach ($statement as $row) {
+    echo "id".$row["id"].","."name".$row["name"].","."mail".$row["mail"];
+    echo '<br>';
 }
