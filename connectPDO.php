@@ -5,16 +5,14 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // 環境変数のプロパティ
-$serverName = $_ENV["SERVER_NAME"];
+$hostName = $_ENV["HOST_NAME"];
 $userName = $_ENV["USER_NAME"];
 $password = $_ENV["PASSWORD"];
 $database = "todo";
-$dsn = 'mysql:host='.$serverName.';dbname='.$database.';charset=utf8';
+$dsn = 'mysql:host='.$hostName.';dbname='.$database.';charset=utf8';
 // echo $serverName;
 try { 
     $dbh = new PDO($dsn, $userName, $password);
-    echo '接続できました';
-    echo '<br>';
 } catch (PDOException $e) {
       // エラーメッセージを表示させる
   echo 'データベースにアクセスできません！' . $e->getMessage();
@@ -27,6 +25,6 @@ $sql = "SELECT * FROM users";
 $statement = $dbh->query($sql);
 
 foreach ($statement as $row) {
-    echo "id".$row["id"].","."name".$row["name"].","."mail".$row["mail"];
+    echo "id:".$row["id"].","."name:".$row["name"].","."mail:".$row["mail"];
     echo '<br>';
 }
