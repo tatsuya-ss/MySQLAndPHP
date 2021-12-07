@@ -10,7 +10,7 @@ $userName = $_ENV["USER_NAME"];
 $password = $_ENV["PASSWORD"];
 $database = "todo";
 $dsn = 'mysql:host='.$hostName.';dbname='.$database.';charset=utf8';
-// echo $serverName;
+
 try { 
     $dbh = new PDO($dsn, $userName, $password);
 } catch (PDOException $e) {
@@ -19,12 +19,4 @@ try {
   echo '<br>';
   // 強制終了
   exit;
-}
-
-$sql = "SELECT * FROM users";
-$statement = $dbh->query($sql);
-
-foreach ($statement as $row) {
-    echo "id:".$row["id"].","."name:".$row["name"].","."mail:".$row["mail"];
-    echo '<br>';
 }
