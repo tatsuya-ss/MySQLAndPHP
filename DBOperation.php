@@ -14,7 +14,7 @@ final class DBOperation {
     // 新しいtodoを作成
     public function saveUser($todo, $deadline) {
         // MySQLのクエリ
-        $saveQuery = 'insert into todo(jdoc) values (JSON_OBJECT("todo","'.$todo.'","deadline","'.$deadline.'"));';
+        $saveQuery = 'insert into todo(todo, deadline) values ("'.$todo.'", "'.$deadline.'");';
         $insertQuery = $this->connection->prepare($saveQuery);
         $result = $insertQuery -> execute();
         $insertQuery = null;
