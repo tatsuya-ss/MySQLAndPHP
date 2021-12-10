@@ -6,6 +6,8 @@ $results = $dbh->query($sql);
 
 echo "[";
 foreach ($results as $result) {
-    echo $result["jdoc"].",";
+    $array = array('todo' => $result['todo'], 'deadline' => $result["deadline"]);
+    $json = json_encode($array);
+    echo $json.',';
 };
 echo "]";
